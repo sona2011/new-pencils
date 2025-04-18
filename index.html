@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>New Pencils - كاشير</title>
+    <script>
+        function calculateTotal() {
+            let qty = parseFloat(document.getElementById('quantity').value) || 0;
+            let price = parseFloat(document.getElementById('price').value) || 0;
+            document.getElementById('total').value = qty * price;
+        }
+    </script>
+</head>
+<body style="font-family: Arial; direction: rtl; padding: 30px;">
+    <h1>نظام كاشير - New Pencils</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color: green;">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="post">
+        <label>اسم المنتج: <input type="text" name="product" required></label><br><br>
+        <label>الكمية: <input type="number" name="quantity" id="quantity" required oninput="calculateTotal()"></label><br><br>
+        <label>السعر: <input type="number" name="price" id="price" step="0.01" required oninput="calculateTotal()"></label><br><br>
+        <label>المجموع: <input type="number" id="total" readonly></label><br><br>
+        <label>اسم العميل: <input type="text" name="customer"></label><br><br>
+        <label>اسم الكاشير: <input type="text" name="cashier" required></label><br><br>
+        <button type="submit">تسجيل الشراء</button>
+    </form>
+</body>
+</html>
